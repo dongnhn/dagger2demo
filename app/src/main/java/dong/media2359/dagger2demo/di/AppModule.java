@@ -2,6 +2,7 @@ package dong.media2359.dagger2demo.di;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import dagger.Module;
 import dagger.Provides;
@@ -31,5 +32,10 @@ public class AppModule {
     @Provides
     ImageLoader providesImageLoader(Context context) {
         return new ImageLoaderImpl(context);
+    }
+
+    @Provides
+    SharedPreferences providesSharedPreferences(Context context) {
+        return context.getSharedPreferences("data-pref", Context.MODE_PRIVATE);
     }
 }
