@@ -2,7 +2,6 @@ package dong.media2359.dagger2demo.di;
 
 import dagger.Component;
 import dong.media2359.dagger2demo.home.HomeComponent;
-import dong.media2359.dagger2demo.imageloader.ImageLoader;
 import dong.media2359.dagger2demo.home.HomeModule;
 
 /**
@@ -11,7 +10,6 @@ import dong.media2359.dagger2demo.home.HomeModule;
 
 @Component(modules = {AppModule.class})
 public interface AppComponent {
-    ImageLoader getImageLoader();
     // Dagger doesn't know how to create HomeModule, so we must provide it in constructor
     HomeComponent homeComponent(HomeModule homeModule);
 }

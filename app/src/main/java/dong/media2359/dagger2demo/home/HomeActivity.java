@@ -6,8 +6,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
+import javax.inject.Inject;
+
 import dong.media2359.dagger2demo.DemoApplication;
 import dong.media2359.dagger2demo.R;
+import dong.media2359.dagger2demo.di.AppComponent;
 import dong.media2359.dagger2demo.imageloader.ImageLoader;
 import dong.media2359.dagger2demo.itemlist.ItemListFragment;
 import dong.media2359.dagger2demo.itemlist.ItemListFragment2;
@@ -18,13 +21,17 @@ import dong.media2359.dagger2demo.util.LogUtil;
  */
 
 public class HomeActivity extends FragmentActivity {
+    @Inject
     ImageLoader imageLoader;
+    @Inject
     HomePresenter homePresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        // imageLoader should not be null after this line
-        imageLoader = ((DemoApplication) getApplication()).getAppComponent().getImageLoader();
+        AppComponent appComponent = ((DemoApplication) getApplication()).getAppComponent();
+        HomeComponent homeComponent = appComponent.homeComponent(new HomeModule(this));
+        // imageLoader and homePresenter should not be null after this line
+        homeComponent.inject(this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
