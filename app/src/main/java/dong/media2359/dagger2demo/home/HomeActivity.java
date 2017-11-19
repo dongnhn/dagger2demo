@@ -18,6 +18,7 @@ import dong.media2359.dagger2demo.util.LogUtil;
 
 public class HomeActivity extends FragmentActivity {
     ImageLoader imageLoader;
+    HomePresenter homePresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class HomeActivity extends FragmentActivity {
     public String toString() {
         return "HomeActivity{" +
                 "imageLoader=" + imageLoader +
+                ", homePresenter=" + homePresenter +
                 '}';
     }
 }
