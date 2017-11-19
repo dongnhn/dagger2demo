@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
+import dong.media2359.dagger2demo.DemoApplication;
 import dong.media2359.dagger2demo.R;
 import dong.media2359.dagger2demo.imageloader.ImageLoader;
 import dong.media2359.dagger2demo.itemlist.ItemListFragment;
@@ -22,6 +23,9 @@ public class HomeActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        // imageLoader should not be null after this line
+        imageLoader = ((DemoApplication) getApplication()).getAppComponent().getImageLoader();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
