@@ -24,6 +24,7 @@ public class AppModule {
         this.application = application;
     }
 
+    @ApplicationScope
     @Provides
     Context providesContext() {
         return this.application;
@@ -36,6 +37,7 @@ public class AppModule {
         return new ImageLoaderImpl(context);
     }
 
+    @ApplicationScope
     @Provides
     SharedPreferences providesSharedPreferences(Context context) {
         return context.getSharedPreferences("data-pref", Context.MODE_PRIVATE);
