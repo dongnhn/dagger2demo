@@ -33,13 +33,13 @@ public class AppModule {
     @ApplicationScope
     @Provides
     // now HomeActivity and ItemListFragment2 will use the same ImageLoader instance
-    ImageLoader providesImageLoader(Context context) {
+    static ImageLoader providesImageLoader(Context context) {
         return new ImageLoaderImpl(context);
     }
 
     @ApplicationScope
     @Provides
-    SharedPreferences providesSharedPreferences(Context context) {
+    static SharedPreferences providesSharedPreferences(Context context) {
         return context.getSharedPreferences("data-pref", Context.MODE_PRIVATE);
     }
 }

@@ -20,20 +20,20 @@ public class DataSourceModule {
     @ApplicationScope
     @Provides
     @Local
-    ItemDataSource providesLocalDataSource(SharedPreferences sharePref) {
+    static ItemDataSource providesLocalDataSource(SharedPreferences sharePref) {
         return new SharedPrefItemDataSource(sharePref);
     }
 
     @ApplicationScope
     @Provides
     @Remote
-    ItemDataSource providesRemoteDataSource() {
+    static ItemDataSource providesRemoteDataSource() {
         return new RemoteItemDataSource();
     }
 
     @ApplicationScope
     @Provides
-    ItemRepository providesItemRepository(@Local ItemDataSource localDataSource, @Remote ItemDataSource remoteDataSource) {
+    static ItemRepository providesItemRepository(@Local ItemDataSource localDataSource, @Remote ItemDataSource remoteDataSource) {
         return new ItemRepository(localDataSource, remoteDataSource);
     }
 }

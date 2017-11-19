@@ -29,7 +29,7 @@ public class HomeModule {
 
     @ActivityScope
     @Provides
-    HomePresenter providesHomePresenter(HomeActivity activity) {
+    static HomePresenter providesHomePresenter(HomeActivity activity) {
         return new HomePresenterImpl(activity);
     }
 }

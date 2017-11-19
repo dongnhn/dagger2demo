@@ -13,7 +13,7 @@ import dong.media2359.dagger2demo.di.FragmentScope;
 public class ItemListModule {
     @FragmentScope
     @Provides
-    ItemListPresenter providesItemListPresenter(ItemRepository itemRepository) {
+    static ItemListPresenter providesItemListPresenter(ItemRepository itemRepository) {
         return new ItemListPresenterImpl(itemRepository);
     }
 }
