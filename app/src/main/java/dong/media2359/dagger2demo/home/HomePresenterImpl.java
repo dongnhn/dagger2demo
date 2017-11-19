@@ -19,7 +19,7 @@ public class HomePresenterImpl implements HomePresenter {
     public String toString() {
         return "HomePresenterImpl{" +
                 "id=" + id +
-                ", activity=" + activity +
+                ", activity=" + activity.getClass().getName() +
                 '}';
     }
 }
