@@ -1,5 +1,6 @@
 package dong.media2359.dagger2demo.itemlist;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,7 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import javax.inject.Inject;
+
 import dong.media2359.dagger2demo.R;
+import dong.media2359.dagger2demo.home.HomeActivity;
+import dong.media2359.dagger2demo.home.HomeComponent;
 import dong.media2359.dagger2demo.util.LogUtil;
 
 /**
@@ -16,7 +21,16 @@ import dong.media2359.dagger2demo.util.LogUtil;
 
 public class ItemListFragment extends Fragment {
 
+    @Inject
     ItemListPresenter itemListPresenter;
+
+    @Override
+    public void onAttach(Context context) {
+        HomeComponent homeComponent = ((HomeActivity) context).getHomeComponent();
+        // itemListPresenter should not be null after this line
+        homeComponent.itemListComponent().inject(this);
+        super.onAttach(context);
+    }
 
     @Nullable
     @Override

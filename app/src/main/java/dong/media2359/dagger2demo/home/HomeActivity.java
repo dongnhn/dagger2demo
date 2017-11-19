@@ -26,10 +26,13 @@ public class HomeActivity extends FragmentActivity {
     @Inject
     HomePresenter homePresenter;
 
+    private HomeComponent homeComponent;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AppComponent appComponent = ((DemoApplication) getApplication()).getAppComponent();
-        HomeComponent homeComponent = appComponent.homeComponent(new HomeModule(this));
+        // retain homeComponent so that child fragments can use it
+        homeComponent = appComponent.homeComponent(new HomeModule(this));
         // imageLoader and homePresenter should not be null after this line
         homeComponent.inject(this);
 
@@ -51,6 +54,10 @@ public class HomeActivity extends FragmentActivity {
         });
 
         LogUtil.logDependencies(this);
+    }
+
+    public HomeComponent getHomeComponent() {
+        return homeComponent;
     }
 
     private void showFragment(String className) {

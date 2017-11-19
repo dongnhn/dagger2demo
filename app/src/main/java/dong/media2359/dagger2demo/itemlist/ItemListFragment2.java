@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import javax.inject.Inject;
+
 import dong.media2359.dagger2demo.R;
 import dong.media2359.dagger2demo.imageloader.ImageLoader;
 
@@ -15,6 +17,10 @@ import dong.media2359.dagger2demo.imageloader.ImageLoader;
 
 public class ItemListFragment2 extends ItemListFragment {
 
+    // imageLoader is still null after parent fragment have done the injection.
+    // this is because Dagger only injects the super class type.
+
+    @Inject
     ImageLoader imageLoader;
 
     @Nullable
