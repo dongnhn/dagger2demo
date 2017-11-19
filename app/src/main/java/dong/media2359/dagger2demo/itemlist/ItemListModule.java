@@ -1,8 +1,7 @@
 package dong.media2359.dagger2demo.itemlist;
 
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
-import dong.media2359.dagger2demo.data.source.ItemRepository;
 import dong.media2359.dagger2demo.di.FragmentScope;
 
 /**
@@ -10,10 +9,12 @@ import dong.media2359.dagger2demo.di.FragmentScope;
  */
 
 @Module
-public class ItemListModule {
+public abstract class ItemListModule {
+
+    // @Binds only applicable to abstract methods, therefore the module class must be an abstract class too.
+    // So module with non-empty constructor can't use @Binds
+
     @FragmentScope
-    @Provides
-    static ItemListPresenter providesItemListPresenter(ItemRepository itemRepository) {
-        return new ItemListPresenterImpl(itemRepository);
-    }
+    @Binds
+    abstract ItemListPresenter bindsItemListPresenter(ItemListPresenterImpl itemListPresenter);
 }
