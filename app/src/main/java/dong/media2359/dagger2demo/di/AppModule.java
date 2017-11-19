@@ -29,7 +29,9 @@ public class AppModule {
         return this.application;
     }
 
+    @ApplicationScope
     @Provides
+    // now HomeActivity and ItemListFragment2 will use the same ImageLoader instance
     ImageLoader providesImageLoader(Context context) {
         return new ImageLoaderImpl(context);
     }
