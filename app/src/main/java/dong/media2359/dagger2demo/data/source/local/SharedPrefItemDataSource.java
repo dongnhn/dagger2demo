@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import dong.media2359.dagger2demo.data.Item;
 import dong.media2359.dagger2demo.data.source.ItemDataSource;
 import dong.media2359.dagger2demo.util.IdUtil;
@@ -18,6 +20,7 @@ public class SharedPrefItemDataSource implements ItemDataSource {
 
     private SharedPreferences sharedPreferences;
 
+    @Inject
     public SharedPrefItemDataSource(SharedPreferences sharedPreferences) {
         this.id = IdUtil.randomId();
         this.sharedPreferences = sharedPreferences;

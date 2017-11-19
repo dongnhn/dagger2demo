@@ -2,6 +2,8 @@ package dong.media2359.dagger2demo.data.source.remote;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import dong.media2359.dagger2demo.data.Item;
 import dong.media2359.dagger2demo.data.source.ItemDataSource;
 import dong.media2359.dagger2demo.util.IdUtil;
@@ -14,6 +16,7 @@ public class RemoteItemDataSource implements ItemDataSource {
 
     private final int id;
 
+    @Inject
     public RemoteItemDataSource() {
         this.id = IdUtil.randomId();
     }

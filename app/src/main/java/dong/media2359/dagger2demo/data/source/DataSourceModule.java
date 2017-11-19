@@ -1,7 +1,6 @@
 package dong.media2359.dagger2demo.data.source;
 
-import android.content.SharedPreferences;
-
+import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 import dong.media2359.dagger2demo.data.source.local.SharedPrefItemDataSource;
@@ -13,23 +12,19 @@ import dong.media2359.dagger2demo.di.ApplicationScope;
  */
 
 @Module
-public class DataSourceModule {
+public abstract class DataSourceModule {
 
     // we need to use qualifier when there're 2 or more methods that return the same type
 
     @ApplicationScope
-    @Provides
+    @Binds
     @Local
-    static ItemDataSource providesLocalDataSource(SharedPreferences sharePref) {
-        return new SharedPrefItemDataSource(sharePref);
-    }
+    abstract ItemDataSource bindsLocalDataSource(SharedPrefItemDataSource dataSource);
 
     @ApplicationScope
-    @Provides
+    @Binds
     @Remote
-    static ItemDataSource providesRemoteDataSource() {
-        return new RemoteItemDataSource();
-    }
+    abstract ItemDataSource bindsRemoteDataSource(RemoteItemDataSource dataSource);
 
     @ApplicationScope
     @Provides
