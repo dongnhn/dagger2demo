@@ -1,5 +1,6 @@
 package dong.media2359.dagger2demo.itemlist;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import javax.inject.Inject;
 
 import dong.media2359.dagger2demo.R;
+import dong.media2359.dagger2demo.home.HomeActivity;
+import dong.media2359.dagger2demo.home.HomeComponent;
 import dong.media2359.dagger2demo.imageloader.ImageLoader;
 
 /**
@@ -17,11 +20,16 @@ import dong.media2359.dagger2demo.imageloader.ImageLoader;
 
 public class ItemListFragment2 extends ItemListFragment {
 
-    // imageLoader is still null after parent fragment have done the injection.
-    // this is because Dagger only injects the super class type.
-
     @Inject
     ImageLoader imageLoader;
+
+    @Override
+    public void onAttach(Context context) {
+        // need to do the injection again to get all the dependencies
+        HomeComponent homeComponent = ((HomeActivity) context).getHomeComponent();
+        homeComponent.itemListComponent().inject(this);
+        super.onAttach(context);
+    }
 
     @Nullable
     @Override

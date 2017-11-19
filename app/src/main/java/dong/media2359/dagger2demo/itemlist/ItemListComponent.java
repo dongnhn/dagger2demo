@@ -9,4 +9,6 @@ import dagger.Subcomponent;
 @Subcomponent(modules = {ItemListModule.class})
 public interface ItemListComponent {
     void inject(ItemListFragment itemListFragment);
+
+    void inject(ItemListFragment2 itemListFragment2);
 }
