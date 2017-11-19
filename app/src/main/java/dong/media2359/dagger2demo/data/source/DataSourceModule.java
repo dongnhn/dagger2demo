@@ -2,7 +2,6 @@ package dong.media2359.dagger2demo.data.source;
 
 import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 import dong.media2359.dagger2demo.data.source.local.SharedPrefItemDataSource;
 import dong.media2359.dagger2demo.data.source.remote.RemoteItemDataSource;
 import dong.media2359.dagger2demo.di.ApplicationScope;
@@ -26,9 +25,8 @@ public abstract class DataSourceModule {
     @Remote
     abstract ItemDataSource bindsRemoteDataSource(RemoteItemDataSource dataSource);
 
-    @ApplicationScope
-    @Provides
-    static ItemRepository providesItemRepository(@Local ItemDataSource localDataSource, @Remote ItemDataSource remoteDataSource) {
-        return new ItemRepository(localDataSource, remoteDataSource);
-    }
+    /**
+     * ItemRepository can be created by dagger, so we don't need to provide manually here
+     * see @{@link ItemRepository}
+     */
 }
