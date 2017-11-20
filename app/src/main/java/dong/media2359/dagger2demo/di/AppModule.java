@@ -1,5 +1,6 @@
 package dong.media2359.dagger2demo.di;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,6 +8,10 @@ import android.content.SharedPreferences;
 import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
+import dagger.android.ActivityKey;
+import dagger.android.AndroidInjector;
+import dagger.multibindings.IntoMap;
+import dong.media2359.dagger2demo.home.HomeActivity;
 import dong.media2359.dagger2demo.home.HomeComponent;
 import dong.media2359.dagger2demo.imageloader.ImageLoader;
 import dong.media2359.dagger2demo.imageloader.ImageLoaderImpl;
@@ -36,4 +41,9 @@ public abstract class AppModule {
     static SharedPreferences providesSharedPreferences(Context context) {
         return context.getSharedPreferences("data-pref", Context.MODE_PRIVATE);
     }
+
+    @Binds
+    @IntoMap
+    @ActivityKey(HomeActivity.class)
+    abstract AndroidInjector.Factory<? extends Activity> bindHomeBuilder(HomeComponent.Builder builder);
 }

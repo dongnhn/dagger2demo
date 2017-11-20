@@ -4,6 +4,7 @@ import android.app.Application;
 
 import dagger.BindsInstance;
 import dagger.Component;
+import dagger.android.support.AndroidSupportInjectionModule;
 import dong.media2359.dagger2demo.data.source.DataSourceModule;
 import dong.media2359.dagger2demo.data.source.ItemRepository;
 import dong.media2359.dagger2demo.home.HomeComponent;
@@ -13,7 +14,7 @@ import dong.media2359.dagger2demo.home.HomeComponent;
  */
 
 @ApplicationScope
-@Component(modules = {AppModule.class, DataSourceModule.class})
+@Component(modules = {AppModule.class, DataSourceModule.class, AndroidSupportInjectionModule.class})
 public interface AppComponent {
     /**
      * Since we have defined the Builder for HomeComponent, we must get the builder and build it ourselves.
