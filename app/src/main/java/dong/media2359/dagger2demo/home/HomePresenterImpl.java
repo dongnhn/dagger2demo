@@ -1,5 +1,7 @@
 package dong.media2359.dagger2demo.home;
 
+import javax.inject.Inject;
+
 import dong.media2359.dagger2demo.util.IdUtil;
 
 /**
@@ -10,6 +12,7 @@ public class HomePresenterImpl implements HomePresenter {
     private final int id;
     private HomeActivity activity;
 
+    @Inject
     public HomePresenterImpl(HomeActivity activity) {
         this.activity = activity;
         id = IdUtil.randomId();

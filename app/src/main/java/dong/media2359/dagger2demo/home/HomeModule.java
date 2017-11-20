@@ -1,7 +1,7 @@
 package dong.media2359.dagger2demo.home;
 
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 import dong.media2359.dagger2demo.di.ActivityScope;
 
 /**
@@ -9,7 +9,7 @@ import dong.media2359.dagger2demo.di.ActivityScope;
  */
 
 @Module
-public class HomeModule {
+public abstract class HomeModule {
 
     // only need to provide HomePresenter
     // ImageLoader has already been provided in AppModule
@@ -19,8 +19,6 @@ public class HomeModule {
     // the HomeActivity provision method can be removed too.
 
     @ActivityScope
-    @Provides
-    static HomePresenter providesHomePresenter(HomeActivity activity) {
-        return new HomePresenterImpl(activity);
-    }
+    @Binds
+    abstract HomePresenter providesHomePresenter(HomePresenterImpl presenter);
 }
