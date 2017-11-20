@@ -12,9 +12,7 @@ import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
-import dong.media2359.dagger2demo.DemoApplication;
 import dong.media2359.dagger2demo.R;
-import dong.media2359.dagger2demo.di.AppComponent;
 import dong.media2359.dagger2demo.imageloader.ImageLoader;
 import dong.media2359.dagger2demo.itemlist.ItemListFragment;
 import dong.media2359.dagger2demo.itemlist.ItemListFragment2;
@@ -33,19 +31,10 @@ public class HomeActivity extends FragmentActivity implements HasSupportFragment
     @Inject
     DispatchingAndroidInjector<Fragment> dispatchingSupportFragmentInjector;
 
-    private HomeComponent homeComponent;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         // imageLoader and homePresenter should not be null after this line
         AndroidInjection.inject(this);
-
-        // still leave this part untouched for child fragments
-        AppComponent appComponent = ((DemoApplication) getApplication()).getAppComponent();
-        HomeComponent.Builder homeBuilder = appComponent.homeBuilder();
-        homeBuilder.seedInstance(this);
-        // retain homeComponent so that child fragments can use it
-        homeComponent = (HomeComponent) homeBuilder.build();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
@@ -65,10 +54,6 @@ public class HomeActivity extends FragmentActivity implements HasSupportFragment
         });
 
         LogUtil.logDependencies(this);
-    }
-
-    public HomeComponent getHomeComponent() {
-        return homeComponent;
     }
 
     private void showFragment(String className) {

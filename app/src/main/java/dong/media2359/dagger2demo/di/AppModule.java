@@ -1,6 +1,5 @@
 package dong.media2359.dagger2demo.di;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,11 +7,9 @@ import android.content.SharedPreferences;
 import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
-import dagger.android.ActivityKey;
-import dagger.android.AndroidInjector;
-import dagger.multibindings.IntoMap;
+import dagger.android.ContributesAndroidInjector;
 import dong.media2359.dagger2demo.home.HomeActivity;
-import dong.media2359.dagger2demo.home.HomeComponent;
+import dong.media2359.dagger2demo.home.HomeModule;
 import dong.media2359.dagger2demo.imageloader.ImageLoader;
 import dong.media2359.dagger2demo.imageloader.ImageLoaderImpl;
 
@@ -20,7 +17,7 @@ import dong.media2359.dagger2demo.imageloader.ImageLoaderImpl;
  * Created by Dong (nguyen.dong@2359media.com) on 11/19/17.
  */
 
-@Module(subcomponents = {HomeComponent.class})
+@Module
 public abstract class AppModule {
     // provides the dependencies that're used in whole app
 
@@ -42,8 +39,7 @@ public abstract class AppModule {
         return context.getSharedPreferences("data-pref", Context.MODE_PRIVATE);
     }
 
-    @Binds
-    @IntoMap
-    @ActivityKey(HomeActivity.class)
-    abstract AndroidInjector.Factory<? extends Activity> bindHomeBuilder(HomeComponent.Builder builder);
+    @ActivityScope // move the scope from HomeComponent to this
+    @ContributesAndroidInjector(modules = {HomeModule.class})
+    abstract HomeActivity contributeHomeActivityInjector();
 }

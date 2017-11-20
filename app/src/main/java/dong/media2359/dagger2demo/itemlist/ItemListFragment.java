@@ -12,8 +12,6 @@ import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
 import dong.media2359.dagger2demo.R;
-import dong.media2359.dagger2demo.home.HomeActivity;
-import dong.media2359.dagger2demo.home.HomeComponent;
 import dong.media2359.dagger2demo.util.LogUtil;
 
 /**
