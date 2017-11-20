@@ -5,6 +5,7 @@ import android.app.Application;
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.support.AndroidSupportInjectionModule;
+import dong.media2359.dagger2demo.DemoApplication;
 import dong.media2359.dagger2demo.data.source.DataSourceModule;
 import dong.media2359.dagger2demo.data.source.ItemRepository;
 import dong.media2359.dagger2demo.home.HomeComponent;
@@ -24,6 +25,8 @@ public interface AppComponent {
      */
     HomeComponent.Builder homeBuilder();
     ItemRepository getItemRepository();
+
+    void inject(DemoApplication application);
 
     // replace Dagger auto-generated builder with our builder
     @Component.Builder
