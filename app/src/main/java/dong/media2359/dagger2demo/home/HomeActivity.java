@@ -3,15 +3,11 @@ package dong.media2359.dagger2demo.home;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
 import javax.inject.Inject;
 
-import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
+import dagger.android.support.DaggerAppCompatActivity;
 import dong.media2359.dagger2demo.R;
 import dong.media2359.dagger2demo.imageloader.ImageLoader;
 import dong.media2359.dagger2demo.itemlist.ItemListFragment;
@@ -21,21 +17,14 @@ import dong.media2359.dagger2demo.util.LogUtil;
 /**
  * Created by Dong (nguyen.dong@2359media.com) on 11/10/17.
  */
-// For demo purpose, we will let HomeActivity implements HasSupportFragmentInjector.
-// In practice, we can let DemoApplication implements this for simplicity.
-public class HomeActivity extends FragmentActivity implements HasSupportFragmentInjector {
+public class HomeActivity extends DaggerAppCompatActivity {
     @Inject
     ImageLoader imageLoader;
     @Inject
     HomePresenter homePresenter;
-    @Inject
-    DispatchingAndroidInjector<Fragment> dispatchingSupportFragmentInjector;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        // imageLoader and homePresenter should not be null after this line
-        AndroidInjection.inject(this);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -70,10 +59,5 @@ public class HomeActivity extends FragmentActivity implements HasSupportFragment
                 "imageLoader=" + imageLoader +
                 ", homePresenter=" + homePresenter +
                 '}';
-    }
-
-    @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return dispatchingSupportFragmentInjector;
     }
 }

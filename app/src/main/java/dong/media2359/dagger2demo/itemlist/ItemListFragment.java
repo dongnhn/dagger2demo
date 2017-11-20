@@ -1,16 +1,14 @@
 package dong.media2359.dagger2demo.itemlist;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import javax.inject.Inject;
 
-import dagger.android.support.AndroidSupportInjection;
+import dagger.android.support.DaggerFragment;
 import dong.media2359.dagger2demo.R;
 import dong.media2359.dagger2demo.util.LogUtil;
 
@@ -18,16 +16,10 @@ import dong.media2359.dagger2demo.util.LogUtil;
  * Created by Dong (nguyen.dong@2359media.com) on 11/10/17.
  */
 
-public class ItemListFragment extends Fragment {
+public class ItemListFragment extends DaggerFragment {
 
     @Inject
     ItemListPresenter itemListPresenter;
-
-    @Override
-    public void onAttach(Context context) {
-        AndroidSupportInjection.inject(this);
-        super.onAttach(context);
-    }
 
     @Nullable
     @Override
