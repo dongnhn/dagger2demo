@@ -27,7 +27,9 @@ public class ItemListFragment2 extends ItemListFragment {
     public void onAttach(Context context) {
         // need to do the injection again to get all the dependencies
         HomeComponent homeComponent = ((HomeActivity) context).getHomeComponent();
-        homeComponent.itemListComponent().inject(this);
+        homeComponent.itemListBuilder()
+                .build()
+                .inject(this);
         super.onAttach(context);
     }
 

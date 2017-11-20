@@ -13,4 +13,9 @@ public interface ItemListComponent {
     void inject(ItemListFragment itemListFragment);
 
     void inject(ItemListFragment2 itemListFragment2);
+
+    @Subcomponent.Builder
+    interface Builder {
+        ItemListComponent build();
+    }
 }

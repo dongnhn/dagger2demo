@@ -14,9 +14,7 @@ import dong.media2359.dagger2demo.itemlist.ItemListComponent;
 public interface HomeComponent {
     void inject(HomeActivity homeActivity);
 
-    // Declare ItemListComponent as a subcomponent of HomeComponent
-    // Dagger can create ItemListModule, so don't need to provide it here
-    ItemListComponent itemListComponent();
+    ItemListComponent.Builder itemListBuilder();
 
     @Subcomponent.Builder
     interface Builder {
