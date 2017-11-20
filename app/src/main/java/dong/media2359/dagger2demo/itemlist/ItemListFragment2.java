@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import javax.inject.Inject;
 
 import dong.media2359.dagger2demo.R;
-import dong.media2359.dagger2demo.home.HomeActivity;
-import dong.media2359.dagger2demo.home.HomeComponent;
 import dong.media2359.dagger2demo.imageloader.ImageLoader;
 
 /**
@@ -25,11 +23,7 @@ public class ItemListFragment2 extends ItemListFragment {
 
     @Override
     public void onAttach(Context context) {
-        // imageLoader will be null again, since AndroidInjector only supports one generic type
-        HomeComponent homeComponent = ((HomeActivity) context).getHomeComponent();
-        ItemListComponent.Builder itemListBuilder = homeComponent.itemListBuilder();
-        itemListBuilder.seedInstance(this);
-        itemListBuilder.build().inject(this);
+        // will crashed now, because AndroidSupportInjection can't find any builder mapped with ItemListFragment2.class
         super.onAttach(context);
     }
 

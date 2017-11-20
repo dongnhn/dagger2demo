@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import javax.inject.Inject;
 
+import dagger.android.support.AndroidSupportInjection;
 import dong.media2359.dagger2demo.R;
 import dong.media2359.dagger2demo.home.HomeActivity;
 import dong.media2359.dagger2demo.home.HomeComponent;
@@ -26,11 +27,7 @@ public class ItemListFragment extends Fragment {
 
     @Override
     public void onAttach(Context context) {
-        HomeComponent homeComponent = ((HomeActivity) context).getHomeComponent();
-        // itemListPresenter should not be null after this line
-        ItemListComponent.Builder itemListBuilder = homeComponent.itemListBuilder();
-        itemListBuilder.seedInstance(this);
-        itemListBuilder.build().inject(this);
+        AndroidSupportInjection.inject(this);
         super.onAttach(context);
     }
 

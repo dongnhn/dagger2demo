@@ -9,6 +9,9 @@ import android.view.View;
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasSupportFragmentInjector;
 import dong.media2359.dagger2demo.DemoApplication;
 import dong.media2359.dagger2demo.R;
 import dong.media2359.dagger2demo.di.AppComponent;
@@ -20,12 +23,15 @@ import dong.media2359.dagger2demo.util.LogUtil;
 /**
  * Created by Dong (nguyen.dong@2359media.com) on 11/10/17.
  */
-
-public class HomeActivity extends FragmentActivity {
+// For demo purpose, we will let HomeActivity implements HasSupportFragmentInjector.
+// In practice, we can let DemoApplication implements this for simplicity.
+public class HomeActivity extends FragmentActivity implements HasSupportFragmentInjector {
     @Inject
     ImageLoader imageLoader;
     @Inject
     HomePresenter homePresenter;
+    @Inject
+    DispatchingAndroidInjector<Fragment> dispatchingSupportFragmentInjector;
 
     private HomeComponent homeComponent;
 
@@ -79,5 +85,10 @@ public class HomeActivity extends FragmentActivity {
                 "imageLoader=" + imageLoader +
                 ", homePresenter=" + homePresenter +
                 '}';
+    }
+
+    @Override
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+        return dispatchingSupportFragmentInjector;
     }
 }
