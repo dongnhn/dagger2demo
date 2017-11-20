@@ -1,5 +1,8 @@
 package dong.media2359.dagger2demo.di;
 
+import android.app.Application;
+
+import dagger.BindsInstance;
 import dagger.Component;
 import dong.media2359.dagger2demo.data.source.DataSourceModule;
 import dong.media2359.dagger2demo.data.source.ItemRepository;
@@ -23,7 +26,12 @@ public interface AppComponent {
         // this method is required
         AppComponent build();
 
-        // Dagger doesn't know how to create AppModule, so we must create this method
-        Builder appModule(AppModule appModule);
+        /**
+         * Provide the application when creating component
+         * so that we don't need to pass it through AppModule constructor.
+         * see @{@link AppModule}
+         */
+        @BindsInstance
+        Builder bindsApplication(Application application);
     }
 }

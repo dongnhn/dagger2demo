@@ -17,17 +17,12 @@ import dong.media2359.dagger2demo.imageloader.ImageLoaderImpl;
 public class AppModule {
     // provides the dependencies that're used in whole app
 
-    private Application application;
-
-    public AppModule(Application application) {
-        // Dagger doesn't know how to create context/application, so we must provide it through constructor
-        this.application = application;
-    }
+    // Application has been provided when creating component, so we don't need the constructor here anymore.
 
     @ApplicationScope
     @Provides
-    Context providesContext() {
-        return this.application;
+    Context providesContext(Application application) {
+        return application;
     }
 
     @ApplicationScope

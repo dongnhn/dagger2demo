@@ -3,7 +3,6 @@ package dong.media2359.dagger2demo;
 import android.app.Application;
 
 import dong.media2359.dagger2demo.di.AppComponent;
-import dong.media2359.dagger2demo.di.AppModule;
 import dong.media2359.dagger2demo.di.DaggerAppComponent;
 
 /**
@@ -18,7 +17,8 @@ public class DemoApplication extends Application {
     public void onCreate() {
         super.onCreate();
         appComponent = DaggerAppComponent.builder()
-                .appModule(new AppModule(this))
+                // we don't need to create AppModule anymore, just provide the application
+                .bindsApplication(this)
                 .build();
     }
 
