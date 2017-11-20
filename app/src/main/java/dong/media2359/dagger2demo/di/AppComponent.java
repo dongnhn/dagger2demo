@@ -4,8 +4,9 @@ import android.app.Application;
 
 import dagger.BindsInstance;
 import dagger.Component;
+import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
-import dong.media2359.dagger2demo.DemoApplication;
+import dagger.android.support.DaggerApplication;
 import dong.media2359.dagger2demo.data.source.DataSourceModule;
 import dong.media2359.dagger2demo.data.source.ItemRepository;
 
@@ -15,10 +16,8 @@ import dong.media2359.dagger2demo.data.source.ItemRepository;
 
 @ApplicationScope
 @Component(modules = {AppModule.class, DataSourceModule.class, AndroidSupportInjectionModule.class})
-public interface AppComponent {
+public interface AppComponent extends AndroidInjector<DaggerApplication> {
     ItemRepository getItemRepository();
-
-    void inject(DemoApplication application);
 
     // replace Dagger auto-generated builder with our builder
     @Component.Builder
