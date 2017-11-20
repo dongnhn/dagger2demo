@@ -1,6 +1,5 @@
 package dong.media2359.dagger2demo.itemlist;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -19,13 +18,7 @@ import dong.media2359.dagger2demo.imageloader.ImageLoader;
 public class ItemListFragment2 extends ItemListFragment {
 
     @Inject
-    ImageLoader imageLoader;
-
-    @Override
-    public void onAttach(Context context) {
-        // will crashed now, because AndroidSupportInjection can't find any builder mapped with ItemListFragment2.class
-        super.onAttach(context);
-    }
+    ImageLoader imageLoader; // it's working now
 
     @Nullable
     @Override

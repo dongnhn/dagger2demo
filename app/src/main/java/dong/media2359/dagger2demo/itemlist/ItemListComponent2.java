@@ -10,8 +10,8 @@ import dong.media2359.dagger2demo.di.FragmentScope;
 
 @FragmentScope
 @Subcomponent(modules = {ItemListModule.class})
-public interface ItemListComponent extends AndroidInjector<ItemListFragment> {
+public interface ItemListComponent2 extends AndroidInjector<ItemListFragment2> {
     @Subcomponent.Builder
-    abstract class Builder extends AndroidInjector.Builder<ItemListFragment> {
+    abstract class Builder extends AndroidInjector.Builder<ItemListFragment2> {
     }
 }
