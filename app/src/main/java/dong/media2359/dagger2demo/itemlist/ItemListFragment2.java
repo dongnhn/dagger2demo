@@ -25,11 +25,11 @@ public class ItemListFragment2 extends ItemListFragment {
 
     @Override
     public void onAttach(Context context) {
-        // need to do the injection again to get all the dependencies
+        // imageLoader will be null again, since AndroidInjector only supports one generic type
         HomeComponent homeComponent = ((HomeActivity) context).getHomeComponent();
-        homeComponent.itemListBuilder()
-                .build()
-                .inject(this);
+        ItemListComponent.Builder itemListBuilder = homeComponent.itemListBuilder();
+        itemListBuilder.seedInstance(this);
+        itemListBuilder.build().inject(this);
         super.onAttach(context);
     }
 

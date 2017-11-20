@@ -28,9 +28,9 @@ public class ItemListFragment extends Fragment {
     public void onAttach(Context context) {
         HomeComponent homeComponent = ((HomeActivity) context).getHomeComponent();
         // itemListPresenter should not be null after this line
-        homeComponent.itemListBuilder()
-                .build()
-                .inject(this);
+        ItemListComponent.Builder itemListBuilder = homeComponent.itemListBuilder();
+        itemListBuilder.seedInstance(this);
+        itemListBuilder.build().inject(this);
         super.onAttach(context);
     }
 
