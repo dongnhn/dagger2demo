@@ -8,6 +8,7 @@ import android.view.View;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
 import dong.media2359.dagger2demo.DemoApplication;
 import dong.media2359.dagger2demo.R;
 import dong.media2359.dagger2demo.di.AppComponent;
@@ -30,13 +31,15 @@ public class HomeActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        // imageLoader and homePresenter should not be null after this line
+        AndroidInjection.inject(this);
+
+        // still leave this part untouched for child fragments
         AppComponent appComponent = ((DemoApplication) getApplication()).getAppComponent();
         HomeComponent.Builder homeBuilder = appComponent.homeBuilder();
         homeBuilder.seedInstance(this);
         // retain homeComponent so that child fragments can use it
         homeComponent = (HomeComponent) homeBuilder.build();
-        // imageLoader and homePresenter should not be null after this line
-        homeComponent.inject(this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
