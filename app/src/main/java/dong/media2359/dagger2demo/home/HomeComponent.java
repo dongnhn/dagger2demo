@@ -1,7 +1,7 @@
 package dong.media2359.dagger2demo.home;
 
-import dagger.BindsInstance;
 import dagger.Subcomponent;
+import dagger.android.AndroidInjector;
 import dong.media2359.dagger2demo.di.ActivityScope;
 import dong.media2359.dagger2demo.itemlist.ItemListComponent;
 
@@ -11,17 +11,16 @@ import dong.media2359.dagger2demo.itemlist.ItemListComponent;
 
 @ActivityScope
 @Subcomponent(modules = {HomeModule.class})
-public interface HomeComponent {
-    void inject(HomeActivity homeActivity);
+public interface HomeComponent extends AndroidInjector<HomeActivity> {
+    // inject(HomeActivity) is already defined in AndroidInjector
 
     ItemListComponent.Builder itemListBuilder();
 
     @Subcomponent.Builder
-    interface Builder {
-        // this method is required
-        HomeComponent build();
+    abstract class Builder extends AndroidInjector.Builder<HomeActivity> {
+        // build() is already defined in AndroidInjector.Builder
 
-        @BindsInstance
-        Builder bindsHomeActivity(HomeActivity activity);
+        // seedInstance(HomeActivity) is defined in AndroidInjector.Builder, don't need
+        // to provide another method
     }
 }
