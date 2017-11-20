@@ -16,4 +16,14 @@ public interface AppComponent {
     // Dagger doesn't know how to create HomeModule, so we must provide it in constructor
     HomeComponent homeComponent(HomeModule homeModule);
     ItemRepository getItemRepository();
+
+    // replace Dagger auto-generated builder with our builder
+    @Component.Builder
+    interface Builder {
+        // this method is required
+        AppComponent build();
+
+        // Dagger doesn't know how to create AppModule, so we must create this method
+        Builder appModule(AppModule appModule);
+    }
 }
