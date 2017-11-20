@@ -10,6 +10,7 @@ import dong.media2359.dagger2demo.di.FragmentScope;
 
 @FragmentScope
 @Subcomponent(modules = {ItemListModule.class})
+// Now this component is unused. Dagger will generate the component automatically for us.
 public interface ItemListComponent2 extends AndroidInjector<ItemListFragment2> {
     @Subcomponent.Builder
     abstract class Builder extends AndroidInjector.Builder<ItemListFragment2> {
