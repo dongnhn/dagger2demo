@@ -14,18 +14,9 @@ public class HomeModule {
     // only need to provide HomePresenter
     // ImageLoader has already been provided in AppModule
 
-    private HomeActivity homeActivity;
+    // HomeActivity is provided when creating HomeComponent, the constructor can be removed.
 
-    public HomeModule(HomeActivity homeActivity) {
-        // same reason as AppModule
-        this.homeActivity = homeActivity;
-    }
-
-    @ActivityScope
-    @Provides
-    HomeActivity providesHomeActivity() {
-        return this.homeActivity;
-    }
+    // the HomeActivity provision method can be removed too.
 
     @ActivityScope
     @Provides

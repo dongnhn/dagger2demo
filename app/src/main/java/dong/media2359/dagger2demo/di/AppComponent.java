@@ -7,7 +7,6 @@ import dagger.Component;
 import dong.media2359.dagger2demo.data.source.DataSourceModule;
 import dong.media2359.dagger2demo.data.source.ItemRepository;
 import dong.media2359.dagger2demo.home.HomeComponent;
-import dong.media2359.dagger2demo.home.HomeModule;
 
 /**
  * Created by Dong (nguyen.dong@2359media.com) on 11/19/17.
@@ -16,8 +15,13 @@ import dong.media2359.dagger2demo.home.HomeModule;
 @ApplicationScope
 @Component(modules = {AppModule.class, DataSourceModule.class})
 public interface AppComponent {
-    // Dagger doesn't know how to create HomeModule, so we must provide it in constructor
-    HomeComponent homeComponent(HomeModule homeModule);
+    /**
+     * Since we have defined the Builder for HomeComponent, we must get the builder and build it ourselves.
+     * Dagger can only provide the builder.
+     *
+     * see @{@link AppModule} to know how to declare HomeComponent as subcomponent of AppComponent in this case.
+     */
+    HomeComponent.Builder homeBuilder();
     ItemRepository getItemRepository();
 
     // replace Dagger auto-generated builder with our builder

@@ -1,5 +1,6 @@
 package dong.media2359.dagger2demo.home;
 
+import dagger.BindsInstance;
 import dagger.Subcomponent;
 import dong.media2359.dagger2demo.di.ActivityScope;
 import dong.media2359.dagger2demo.itemlist.ItemListComponent;
@@ -16,4 +17,13 @@ public interface HomeComponent {
     // Declare ItemListComponent as a subcomponent of HomeComponent
     // Dagger can create ItemListModule, so don't need to provide it here
     ItemListComponent itemListComponent();
+
+    @Subcomponent.Builder
+    interface Builder {
+        // this method is required
+        HomeComponent build();
+
+        @BindsInstance
+        Builder bindsHomeActivity(HomeActivity activity);
+    }
 }

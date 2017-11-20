@@ -32,7 +32,10 @@ public class HomeActivity extends FragmentActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AppComponent appComponent = ((DemoApplication) getApplication()).getAppComponent();
         // retain homeComponent so that child fragments can use it
-        homeComponent = appComponent.homeComponent(new HomeModule(this));
+        homeComponent = appComponent.homeBuilder()
+                // get the builder, provide the required activity and build the component
+                .bindsHomeActivity(this)
+                .build();
         // imageLoader and homePresenter should not be null after this line
         homeComponent.inject(this);
 
